@@ -1,0 +1,8 @@
+version: "3.1"
+services:
+    rabbitmq:
+        image: rabbitmq:3-management
+        hostname: my-rabbit
+        ports:
+            - "8080:15672" # management dashboard
+            - "5672:5672" # amqp
