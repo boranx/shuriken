@@ -1,6 +1,6 @@
 # Shuriken
 
-Shuriken is a distributed compute engine that horizontally scalable. It uses RabbitMQ as task queue, execute your commands on the workers.
+Shuriken is a simple distributed compute engine that horizontally scalable. It uses RabbitMQ as task queue, execute your commands on the workers.
 
 ## Requirements
 
@@ -13,7 +13,7 @@ vagrant ssh
 cd /vagrant # After that, you are ready to go.
 make queue # Run a Rabbitmq if you don't have. You can edit endpoints in config file if you have.
 make service # Run this in one terminal
-make service # Run this in another terminal. You can execute multiple times on one node or on different nodes.
+make worker # Run this in another terminal. You can execute multiple times on one node or on different nodes.
 ```
 
 ## Example Requests
