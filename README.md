@@ -1,6 +1,6 @@
 # Shuriken
 
-Shuriken is a simple distributed compute engine that horizontally scalable. It uses RabbitMQ as task queue, execute your commands on the workers.
+Shuriken is a simple distributed compute engine that can horizontally scalable. It uses RabbitMQ as task queue. The workers will take the task and then execute.
 
 ## Requirements
 
@@ -37,6 +37,8 @@ And the response should be like :
 }
 ```
 
+And you can request the status of a task.
+
 GET /command/status/45e972c3-5227-4982-bed9-f475d925825e
 
 And the response should be like :
@@ -52,14 +54,12 @@ GET /command/output/45e972c3-5227-4982-bed9-f475d925825e
 
 And the response should be like : (This is not json btw)
 
-celeryd.pid
-config.ini
-core
-requirements.txt
-run_server.py
+celeryd.pid \
+config.ini \
+core \
+requirements.txt \
+run_server.py \
 tests
-
-And you can request the status of a task. The workers will take the task and then execute.
 
 ## Development
 
