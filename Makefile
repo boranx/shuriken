@@ -1,5 +1,8 @@
 test:
+	@docker-compose -f tool/docker-compose.yml rm -f && docker-compose -f tool/docker-compose.yml up -d
+	@cd service && celery -A core.celery worker --loglevel=info --detach
 	@cd service && pytest -vvv
+	@pkill -9 -f 'celery worker'
 
 clean:
 	@echo "Cleaning ..."
