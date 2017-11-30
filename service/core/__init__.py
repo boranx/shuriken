@@ -2,6 +2,7 @@ from ConfigParser import SafeConfigParser
 from flask import Flask
 from celery import Celery
 from flask_restful import Api
+from kombu.common import Broadcast, Queue
 
 app = Flask(__name__)
 
@@ -19,6 +20,8 @@ celery = Celery(app.name, broker=app.config['broker_url'],
 celery.conf.update(
     result_expires=int(app.config['result_timeout']),
 )
+celery.conf.task_queues = (Broadcast('broadcast_tasks'), Queue('default', routing_key='task.#'),)
+
 celery.conf.update(app.config)
 
 import core.runner
