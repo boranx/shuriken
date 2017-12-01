@@ -9,6 +9,7 @@ Shuriken is a simple distributed compute engine that can horizontally scalable. 
 ## Run
 
 ```shell
+vagrant up
 vagrant ssh
 cd /vagrant # After that, you are ready to go.
 make queue # Run a Rabbitmq if you don't have. You can edit endpoints in config file if you have.
@@ -26,6 +27,14 @@ Payload :
 ```json
 {
     "command":"ls"
+}
+```
+
+Or if you want to broadcast to all workers,
+
+```json
+{
+    "command":"sudo apt-get update"
 }
 ```
 
@@ -59,7 +68,7 @@ config.ini \
 core \
 requirements.txt \
 run_server.py \
-tests
+tests 
 
 ## Development
 
