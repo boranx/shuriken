@@ -4,6 +4,10 @@ test:
 	@cd service && pytest -vvv
 	@pkill -9 -f 'celery worker'
 
+ci:
+	@cd service && celery -A core.celery worker --loglevel=info --detach
+	@cd service && pytest -vvv
+
 clean:
 	@echo "Cleaning ..."
 	@rm -rf	./service/core/*.pyc ./service/*.pyc ./service/tests/*.pyc ./service/.cache ./service/tests/__pycache__ ./service/celeryd.pid
