@@ -5,7 +5,9 @@ test:
 	@pkill -9 -f 'celery worker'
 
 ci:
+	@echo "Running Celery worker"
 	@cd service && celery -A core.celery worker --loglevel=info --detach
+	@sleep 5
 	@cd service && pytest -vvv
 
 clean:
@@ -23,5 +25,5 @@ service:
 	@echo "Starting Service"
 	@cd service && python run_server.py
 
-.DEFAULT_GOAL := build
+.DEFAULT_GOAL := test
 .PHONY: test clean service worker
