@@ -64,7 +64,8 @@ def test_status_finished(client):
 
 def test_status_not_exist(client):
     response = client.get('/command/status/notfoundtaskid')
-    assert b'Task not found' in response.data
+    assert b'Task is waiting for execution or unknown' in response.data
+    assert response.status_code == 420
 
 
 def test_status_exist(client):
@@ -75,7 +76,8 @@ def test_status_exist(client):
 
 def test_output_not_exist(client):
     response = client.get('/command/output/notfoundtaskid')
-    assert b'Task not found' in response.data
+    assert b'Task is waiting for execution or unknown' in response.data
+    assert response.status_code == 420
 
 
 def test_output_exist(client):

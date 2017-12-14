@@ -68,7 +68,7 @@ config.ini \
 core \
 requirements.txt \
 run_server.py \
-tests 
+tests
 
 ## Development
 

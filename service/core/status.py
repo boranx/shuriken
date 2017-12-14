@@ -1,4 +1,5 @@
 from flask_restful import Resource, Api
+from flask import jsonify
 from core import api, celery, app
 import tasks
 
@@ -7,8 +8,8 @@ class TaskStatus(Resource):
     def get(self, task_id):
         task = tasks.cmd_runner.AsyncResult(task_id)
         if task.state == 'PENDING':
-            result = "Task not found"
-            resp = app.make_response((result, 404))
+            result = "Task is waiting for execution or unknown"
+            resp = app.make_response((jsonify(status=result), 420))
             return resp
         elif task.state == 'PROGRESS':
             result_obj = {'Status': "PROGRESS",
