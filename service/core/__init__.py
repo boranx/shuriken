@@ -3,8 +3,10 @@ from flask import Flask
 from celery import Celery
 from flask_restful import Api
 from kombu.common import Broadcast, Queue
+from flasgger import Swagger
 
 app = Flask(__name__)
+swagger = Swagger(app)
 
 config = SafeConfigParser()
 config.read('config.ini')
@@ -27,3 +29,4 @@ celery.conf.update(app.config)
 import core.runner
 import core.status
 import core.output
+import core.operations

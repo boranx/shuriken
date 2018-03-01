@@ -1,0 +1,5 @@
+☐ Add worker id to status result
+☐ Make endpoint that shows worker count and worker's uuid
+✔ Makefile refactoring @done (3/1/2018, 3:19:45 PM)
+☐ Add swagger support
+☐ Move Endpoints to swagger
