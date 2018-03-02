@@ -6,6 +6,20 @@ import tasks
 
 class TaskStatus(Resource):
     def get(self, task_id):
+        """Show a Task Status
+        This is using docstrings for specifications.
+        ---
+        responses:
+            200:
+                description: Show a Task Status
+                schema:
+                    $ref: '#/command/status/<TaskId>'
+                examples:
+                    {
+                        "Status": "SUCCESS",
+                        "description": "Task run successfully"
+                    }
+            """
         task = tasks.cmd_runner.AsyncResult(task_id)
         if task.state == 'PENDING':
             result = "Task is waiting for execution or unknown"

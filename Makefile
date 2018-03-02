@@ -7,6 +7,7 @@ MAKEFLAGS += --no-builtin-rules
 
 test:
 	@docker-compose -f tool/docker-compose.yml rm -f && docker-compose -f tool/docker-compose.yml up -d
+	@until curl localhost:5672; do echo "Waiting for amqp"; sleep 2; done
 	@pushd service && celery -A core.celery worker --loglevel=info --detach && sleep 3 && pytest -vvv && popd
 	@pkill -9 -f 'celery worker'
 ci:

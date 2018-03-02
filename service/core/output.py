@@ -6,6 +6,24 @@ import tasks
 
 class TaskOutput(Resource):
     def get(self, task_id):
+        """Show a Task Output
+        P.S: The output wont be a JSON object
+        ---
+        responses:
+            200:
+                description: Show a Task Output
+                schema:
+                    $ref: '#/command/output/<TaskId>'
+                examples:
+                    {
+                        celeryd.pid
+                        config.ini
+                        core
+                        requirements.txt
+                        run_server.py
+                        tests
+                    }
+            """
         task = tasks.cmd_runner.AsyncResult(task_id)
         if task.state == 'PENDING':
             result = "Task is waiting for execution or unknown"
