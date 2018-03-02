@@ -3,11 +3,18 @@ from flask import Flask, request, jsonify, abort
 from core import celery
 
 
+@app.route("/healthcheck", methods=['GET'])
+def healthcheck():
+    return jsonify(status="healthy"), 200
+
+
 @app.route("/node/active", methods=['GET'])
 def node_count():
     """Show node active and counts
     This is using docstrings for specifications.
     ---
+    tags:
+    - Operations & Management
     responses:
         200:
             description: Number of active nodes

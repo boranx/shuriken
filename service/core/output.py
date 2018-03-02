@@ -9,6 +9,15 @@ class TaskOutput(Resource):
         """Show a Task Output
         P.S: The output wont be a JSON object
         ---
+        tags:
+        - Task Management
+        parameters:
+          - name: TaskId
+            in: path
+            type: string
+            enum: ['45e972c3-5227-4982-bed9-f475d925825e']
+            required: true
+            default: all
         responses:
             200:
                 description: Show a Task Output

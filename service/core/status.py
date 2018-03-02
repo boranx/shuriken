@@ -9,6 +9,8 @@ class TaskStatus(Resource):
         """Show a Task Status
         This is using docstrings for specifications.
         ---
+        tags:
+        - Task Management
         responses:
             200:
                 description: Show a Task Status
