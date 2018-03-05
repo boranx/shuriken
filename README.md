@@ -17,6 +17,12 @@ make service # Run this in one terminal
 make worker # Run this in another terminal. You can execute multiple times on one node or on different nodes.
 ```
 
+## Swagger
+
+You can track endpoints via swagger
+
+![ShurikenServiceUI](./.github/swagger.png)
+
 ## Example Requests
 
 API Default port : 5000

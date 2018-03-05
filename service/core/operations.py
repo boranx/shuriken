@@ -5,6 +5,21 @@ from core import celery
 
 @app.route("/healthcheck", methods=['GET'])
 def healthcheck():
+    """API Healthcheck
+    This is using docstrings for specifications.
+    ---
+    tags:
+    - Operations & Management
+    responses:
+        200:
+            description: Number of active nodes
+            schema:
+                $ref: '#/healthcheck'
+            examples:
+                {
+                    "status": "healthy"
+                }
+        """
     return jsonify(status="healthy"), 200
 
 
