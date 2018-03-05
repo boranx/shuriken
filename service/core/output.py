@@ -1,13 +1,12 @@
 from flask_restful import Resource, Api
 from flask import jsonify
 from core import api, celery, app
-import tasks
+import tasks, json
 
 
 class TaskOutput(Resource):
     def get(self, task_id):
         """Show a Task Output
-        P.S: The output wont be a JSON object
         ---
         tags:
         - Task Management
@@ -25,12 +24,9 @@ class TaskOutput(Resource):
                     $ref: '#/command/output/<TaskId>'
                 examples:
                     {
-                        celeryd.pid
-                        config.ini
-                        core
-                        requirements.txt
-                        run_server.py
-                        tests
+                        "output": "foo\n",
+                        "returncode": 0,
+                        "description": "Task run successfully"
                     }
             """
         task = tasks.cmd_runner.AsyncResult(task_id)
@@ -38,11 +34,9 @@ class TaskOutput(Resource):
             result = "Task is waiting for execution or unknown"
             resp = app.make_response((jsonify(status=result), 420))
             return resp
-        if task.state == "PROGRESS":
-            result = task.info['output']
-        else:
-            result = task.info['output']
-        resp = app.make_response((result, 200))
+        result = task.info
+        jsonResult = json.dumps(result, ensure_ascii=False)
+        resp = app.make_response((jsonResult, 200))
         resp.headers['content-type'] = 'text/plain'
         return resp
 

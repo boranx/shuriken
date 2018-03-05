@@ -32,7 +32,7 @@ Payload :
 
 ```json
 {
-    "command":"ls"
+    "command":"echo 'foo'"
 }
 ```
 
@@ -67,14 +67,15 @@ And the response should be like :
 
 GET /command/output/45e972c3-5227-4982-bed9-f475d925825e
 
-And the response should be like : (This is not json btw)
+And the response should be like : (This is also a json now)
 
-celeryd.pid \
-config.ini \
-core \
-requirements.txt \
-run_server.py \
-tests
+```json
+{
+"output": "foo\n",
+"returncode": 0,
+"description": "Task run successfully"
+}
+```
 
 ## Development
 

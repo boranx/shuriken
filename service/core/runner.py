@@ -21,7 +21,7 @@ def command_runner():
             command:
               type: string
               description: The command's name.
-              default: "ls"
+              default: "echo 'foo'"
     responses:
       200:
         description: OK
