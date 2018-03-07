@@ -33,5 +33,11 @@ service:
 	@echo "Starting Service"
 	@cd service && python run_server.py
 
+dockerPublish:
+	@docker build -f worker.Dockerfile . -t boranx/shuriken-worker:latest
+	@docker build -f master.Dockerfile . -t boranx/shuriken-master:latest
+	@docker push boranx/shuriken-worker:latest
+	@docker push boranx/shuriken-master:latest
+
 .DEFAULT_GOAL := test
-.PHONY: test clean service worker ci
+.PHONY: test clean service worker ci dockerPublish

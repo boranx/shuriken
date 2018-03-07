@@ -17,11 +17,29 @@ make service # Run this in one terminal
 make worker # Run this in another terminal. You can execute multiple times on one node or on different nodes.
 ```
 
+### Run With Docker
+
+```shell
+# Master
+docker run -d -p 5000:5000 boranx/shuriken-master -e BROKER_HOST=172.17.0.1 # Pass broker URL
+
+# Workers
+docker run -d boranx/shuriken-worker -e BROKER_HOST=172.17.0.1 # Pass broker URL
+docker run -d boranx/shuriken-worker -e BROKER_HOST=172.17.0.1 # Pass broker URL
+.
+.
+.
+# N times on different nodes
+```
+
 ## Swagger
 
 You can track endpoints via swagger
 
+```http://localhost:5000/apidocs```
+
 ![ShurikenServiceUI](./.github/swagger.png)
+![ShurikenServiceUI](./.github/execute.png)
 
 ## Example Requests
 
