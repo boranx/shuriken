@@ -4,6 +4,7 @@ from celery import Celery
 from flask_restful import Api
 from kombu.common import Broadcast, Queue
 from flasgger import Swagger
+import os
 
 app = Flask(__name__)
 swagger = Swagger(app)
@@ -11,7 +12,12 @@ swagger = Swagger(app)
 config = SafeConfigParser()
 config.read('config.ini')
 
-app.config['broker_url'] = config.get("Default", "CELERY_BROKER_URL")
+env_broker = os.environ.get('BROKER_HOST', None)
+
+if not env_broker:
+    app.config['broker_url'] = config.get("Default", "CELERY_BROKER_URL")
+else:
+    app.config['broker_url'] = env_broker
 app.config['result_backend'] = config.get("Default", "CELERY_RESULT_BACKEND")
 app.config['tasks'] = config.get("Default", "APPLICATION_TASKS")
 app.config['result_timeout'] = config.get("Default", "PERSIST_RESULTS")

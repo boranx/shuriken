@@ -10,9 +10,13 @@ test:
 	@until curl localhost:5672; do echo "Waiting for amqp"; sleep 2; done
 	@pushd service && celery -A core.celery worker --loglevel=info --detach && sleep 3 && pytest -vvv && popd
 	@pkill -9 -f 'celery worker'
+	@docker build -f worker.Dockerfile .
+	@docker build -f master.Dockerfile .
 ci:
 	@echo "Running Celery worker"
 	@pushd service && celery -A core.celery worker --loglevel=info --detach && sleep 5 && pytest -vvv && popd
+	@docker build -f worker.Dockerfile .
+	@docker build -f master.Dockerfile .
 
 clean:
 	@echo "Cleaning ..."

@@ -8,6 +8,7 @@ install:
 
 services:
   - rabbitmq
+  - docker
 
 script:
   - make ci
