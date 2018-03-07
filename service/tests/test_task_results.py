@@ -17,3 +17,10 @@ class Test_celery_task_results:
         assert b'config.ini' in str(rst)
         assert b'Task run successfully' in str(rst)
         assert b'\'returncode\': 0' in str(rst)
+
+    def test_hostname_returns_successfully(self):
+        rst = cmd_runner.apply(["echo 'foo' && /bin/true"]).get()
+        assert b'foo' in str(rst)
+        assert b'Task run successfully' in str(rst)
+        assert b'hostname' in str(rst)
+        assert b'\'returncode\': 0' in str(rst)

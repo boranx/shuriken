@@ -25,6 +25,7 @@ class TaskOutput(Resource):
                 examples:
                     {
                         "output": "foo\n",
+                        "hostname": "celery@vagrant",
                         "returncode": 0,
                         "description": "Task run successfully"
                     }

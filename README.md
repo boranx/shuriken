@@ -72,6 +72,7 @@ And the response should be like : (This is also a json now)
 ```json
 {
 "output": "foo\n",
+"hostname": "celery@vagrant",
 "returncode": 0,
 "description": "Task run successfully"
 }
