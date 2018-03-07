@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, abort
 @app.route("/command/execute", methods=['POST'])
 def command_runner():
     """
-    post endpoint
+    Single Execution
     ---
     tags:
       - Task Management
@@ -45,7 +45,7 @@ def command_runner():
 @app.route("/command/broadcast", methods=['POST'])
 def broadcast():
     """
-    post endpoint
+    Broadcast Execution
     ---
     tags:
       - Task Management

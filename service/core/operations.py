@@ -25,7 +25,7 @@ def healthcheck():
 
 @app.route("/node/active", methods=['GET'])
 def node_count():
-    """Show node active and counts
+    """Show active nodes and counts
     This is using docstrings for specifications.
     ---
     tags:
