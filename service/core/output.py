@@ -9,14 +9,13 @@ class TaskOutput(Resource):
         """Show a Task Output
         ---
         tags:
-        - Task Management
+        - Tasks
         parameters:
-          - name: TaskId
-            in: path
-            type: string
-            enum: ['45e972c3-5227-4982-bed9-f475d925825e']
-            required: true
-            default: all
+            - in: path
+              name: task_id
+              type: string
+              required: true
+              description: The uuid of your task.
         responses:
             200:
                 description: Show a Task Output

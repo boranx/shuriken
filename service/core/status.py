@@ -10,7 +10,13 @@ class TaskStatus(Resource):
         This is using docstrings for specifications.
         ---
         tags:
-        - Task Management
+        - Tasks
+        parameters:
+            - in: path
+              name: task_id
+              type: string
+              required: true
+              description: The uuid of your task.
         responses:
             200:
                 description: Show a Task Status

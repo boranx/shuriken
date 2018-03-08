@@ -8,7 +8,7 @@ def command_runner():
     Single Execution
     ---
     tags:
-      - Task Management
+      - Tasks
     parameters:
       - name: body
         in: body
@@ -48,7 +48,7 @@ def broadcast():
     Broadcast Execution
     ---
     tags:
-      - Task Management
+      - Tasks
     parameters:
       - name: body
         in: body
