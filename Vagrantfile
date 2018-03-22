@@ -31,7 +31,7 @@ sudo apt-get update
 sudo apt-get install -y docker-ce
 
 # Executing the Docker Command Without Sudo
-sudo usermod -aG docker ${USER}
+sudo usermod -aG docker vagrant
 
 # Install Compose
 sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
