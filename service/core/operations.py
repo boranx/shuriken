@@ -1,6 +1,17 @@
 from core import tasks, app
-from flask import Flask, request, jsonify, abort
+from flask import Flask, request, jsonify, abort, redirect, url_for
 from core import celery
+
+
+@app.route("/")
+def root():
+    """Route to Swagger
+    This is using docstrings for specifications.
+    ---
+    tags:
+    - Operations & Management
+        """
+    return redirect(url_for('flasgger.apidocs'))
 
 
 @app.route("/healthcheck", methods=['GET'])
