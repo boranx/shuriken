@@ -4,5 +4,5 @@
 ✔ Add worker id to status result @done (3/7/2018, 11:35:15 AM)
 ✔ Make endpoint that shows worker count and worker's uuid @done (3/7/2018, 11:35:22 AM)
 ☐ Multiple Results of broadcasted tasks
-☐ Dockerised Worker Nodes
-☐ Dockerised Masters
+✔ Dockerised Worker Nodes @done(18-04-04 14:08)
+✔ Dockerised Masters @done(18-04-04 14:08)

@@ -1,6 +1,6 @@
 # Shuriken [![Build Status](https://travis-ci.org/boranx/shuriken.svg?branch=master)](https://travis-ci.org/boranx/shuriken)
 
-Shuriken is a simple distributed compute engine that can horizontally scalable. It uses RabbitMQ as task queue. The workers will take the task and then execute.
+Shuriken is a simple distributed task executor that can horizontally scalable. It uses RabbitMQ as task queue. The workers will take the task and then execute. You can track results of the task via ```status``` and ```output``` endpoints.
 
 ## Requirements
 
