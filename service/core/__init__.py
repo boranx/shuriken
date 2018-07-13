@@ -1,4 +1,4 @@
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 from flask import Flask
 from celery import Celery
 from flask_restful import Api

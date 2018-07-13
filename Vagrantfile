@@ -12,17 +12,20 @@ sudo apt-get install -y apt-transport-https \
 						make \
 						git \
 						mercurial \
-						python \
-						python-pip \
 						build-essential \
 						zip
 
 # Install Python dependencies
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
-sudo pip install --upgrade pip
-sudo pip install --upgrade ${PYTHON_DEPS[@]}
-sudo pip install -r /vagrant/service/requirements.txt
+sudo add-apt-repository ppa:jonathonf/python-3.6
+sudo apt-get update
+sudo apt-get install -y python3.6 \
+						python3.6-dev
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python3.6 get-pip.py
+sudo pip3.6 install --upgrade ${PYTHON_DEPS[@]}
+sudo pip3.6 install -r /vagrant/service/requirements.txt
 
 # Install Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -

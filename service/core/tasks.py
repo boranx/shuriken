@@ -1,7 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 from subprocess import Popen, PIPE, STDOUT
 from core import celery
-
+import sys
 
 @celery.task(bind=True)
 def cmd_runner(self, cmd, type='runner'):
@@ -12,9 +12,9 @@ def cmd_runner(self, cmd, type='runner'):
                             'description': "",
                             'returncode': None})
     proc = Popen([cmd], stdout=PIPE, stderr=STDOUT, shell=True)
-    for line in iter(proc.stdout.readline, ''):
-        print str(line)
-        output = output + line
+    for line in iter(proc.stdout.readline, b''):
+        print(str(line))
+        output = output + str(line)
         self.update_state(state='PROGRESS', meta={
             'output': output, 'hostname': self.request.hostname, 'description': "", 'returncode': None})
 

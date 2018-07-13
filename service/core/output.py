@@ -1,7 +1,8 @@
 from flask_restful import Resource, Api
 from flask import jsonify
 from core import api, celery, app
-import tasks, json
+import json
+import core.tasks as executor
 
 @app.route("/command/output/<string:task_id>", methods=['GET'])
 def output(task_id):
@@ -28,7 +29,7 @@ def output(task_id):
                     "description": "Task run successfully"
                 }
         """
-    task = tasks.cmd_runner.AsyncResult(task_id)
+    task = executor.cmd_runner.AsyncResult(task_id)
     if task.state == 'PENDING':
         result = "Task is waiting for execution or unknown"
         resp = app.make_response((jsonify(status=result), 420))

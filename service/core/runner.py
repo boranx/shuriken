@@ -1,5 +1,6 @@
-from core import tasks, app
+from core import  app
 from flask import Flask, request, jsonify, abort
+import core.tasks as executor
 
 
 @app.route("/command/execute", methods=['POST'])
@@ -35,10 +36,10 @@ def command_runner():
     try:
         content = request.json
         cmd = content['command']
-    except Exception, e:
+    except Exception as e:
         return jsonify(missing_parameter_error=repr(e)), 404
 
-    task_result = tasks.cmd_runner.apply_async([cmd], queue='default')
+    task_result = executor.cmd_runner.apply_async([cmd], queue='default')
     return jsonify(task_id=task_result.id), 200
 
 
@@ -75,8 +76,8 @@ def broadcast():
     try:
         content = request.json
         cmd = content['command']
-    except Exception, e:
+    except Exception as e:
         return jsonify(missing_parameter_error=repr(e)), 404
 
-    task_result = tasks.cmd_runner.apply_async([cmd], queue='broadcast_tasks')
+    task_result = executor.cmd_runner.apply_async([cmd], queue='broadcast')
     return jsonify(task_id=task_result.id), 200

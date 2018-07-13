@@ -1,13 +1,11 @@
-FROM ubuntu:16.04
+FROM python:3.6.4
 RUN apt-get update && apt-get install -y \
-	python \
-	python-pip \
 	make
 
 ADD . ./app
 WORKDIR /app
-RUN pip install --upgrade pip && \
-	pip install -r service/requirements.txt
+RUN pip3.6 install --upgrade pip==9.0.3 && \
+	pip3.6 install -r service/requirements.txt
 
 EXPOSE 5672
 ENTRYPOINT [ "make", "worker" ]

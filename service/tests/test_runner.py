@@ -48,7 +48,7 @@ def test_command_run_successfully(client):
         result = json_of_response(response)['Status']
         if result != "SUCCESS":
             loop = True
-            print "Initialization"
+            print("Initialization")
             time.sleep(1)
         else:
             loop = False
